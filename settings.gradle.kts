@@ -4,4 +4,4 @@ plugins {
 }
 
 rootProject.name = "pylon"
-include()
+include("pylon-core", "pylon-base")
