@@ -1,7 +1,4 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    id("com.gradleup.shadow") version "8.3.2"
     id("xyz.jpenilla.run-paper") version "2.3.0"
 }
 
@@ -15,12 +12,23 @@ tasks.runServer {
         val runFolder = project.projectDir.resolve("run")
         runFolder.mkdirs()
         runFolder.resolve("eula.txt").writeText("eula=true")
-    }
 
-    pluginJars(
-        baseBuild.projectDir.resolve("build/libs").listFiles().first(),
-        coreBuild.projectDir.resolve("pylon-core/build/libs").listFiles().first()
-    )
+        val pluginsDir = runFolder.resolve("plugins")
+        pluginsDir.deleteRecursively()
+        pluginsDir.mkdirs()
+        copy {
+            from(baseBuild.projectDir.resolve("build/libs")) {
+                include("pylon-base-MODIFIED.jar")
+            }
+            into(pluginsDir)
+        }
+        copy {
+            from(coreBuild.projectDir.resolve("pylon-core/build/libs")) {
+                include("pylon-core-SNAPSHOT.jar")
+            }
+            into(pluginsDir)
+        }
+    }
 
     maxHeapSize = "4G"
     minecraftVersion("1.21.4")
