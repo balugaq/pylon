@@ -1,20 +1,27 @@
-import kotlin.io.path.exists
-import kotlin.io.path.Path
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-run {
-    val corePath = Path("${projectDir}/pylon-core")
-    if (!corePath.exists()) {
-        exec {
-            commandLine("git", "clone", "https://github.com/pylonmc/pylon-core", corePath.toString())
-        }
-    }
+plugins {
+    id("com.gradleup.shadow") version "8.3.2"
+    id("xyz.jpenilla.run-paper") version "2.3.0"
 }
 
-run {
-    val basePath = Path("${projectDir}/pylon-base")
-    if (!basePath.exists()) {
-        exec {
-            commandLine("git", "clone", "https://github.com/pylonmc/pylon-base", basePath.toString())
-        }
+val baseBuild = gradle.includedBuild("base")
+val coreBuild = gradle.includedBuild("core")
+
+tasks.runServer {
+    dependsOn(baseBuild.task(":shadowJar"), coreBuild.task(":pylon-core:shadowJar"))
+
+    doFirst {
+        val runFolder = project.projectDir.resolve("run")
+        runFolder.mkdirs()
+        runFolder.resolve("eula.txt").writeText("eula=true")
     }
+
+    pluginJars(
+        baseBuild.projectDir.resolve("build/libs").listFiles().first(),
+        coreBuild.projectDir.resolve("pylon-core/build/libs").listFiles().first()
+    )
+
+    maxHeapSize = "4G"
+    minecraftVersion("1.21.4")
 }
