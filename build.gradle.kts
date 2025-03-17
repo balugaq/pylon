@@ -33,3 +33,18 @@ tasks.runServer {
     maxHeapSize = "4G"
     minecraftVersion("1.21.4")
 }
+
+tasks.register("runSnapshotServer") {
+    dependsOn(tasks.runServer)
+    group = "run paper"
+}
+
+tasks.register("runStableServer") {
+    dependsOn(baseBuild.task(":runServer"))
+    group = "run paper"
+}
+
+tasks.register("runLiveTests") {
+    dependsOn(coreBuild.task(":pylon-test:runServer"))
+    group = "run paper"
+}
