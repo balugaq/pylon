@@ -1,21 +1,17 @@
-import kotlin.io.path.exists
 import kotlin.io.path.Path
+import kotlin.io.path.exists
 
 run {
     val corePath = Path("core").toAbsolutePath()
     if (!corePath.exists()) {
-        exec {
-            commandLine("git", "clone", "https://github.com/pylonmc/pylon-core", corePath.toString())
-        }
+        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core", corePath.toString())).waitFor()
     }
 }
 
 run {
     val basePath = Path("base").toAbsolutePath()
     if (!basePath.exists()) {
-        exec {
-            commandLine("git", "clone", "https://github.com/pylonmc/pylon-base", basePath.toString())
-        }
+        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base", basePath.toString())).waitFor()
     }
 }
 
