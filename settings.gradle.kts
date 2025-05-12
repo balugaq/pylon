@@ -1,22 +1,19 @@
-import kotlin.io.path.Path
-import kotlin.io.path.exists
-
 run {
-    val corePath = Path("core").toAbsolutePath()
+    val corePath = file(".").resolve("core")
     if (!corePath.exists()) {
         Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core", corePath.toString())).waitFor()
     }
 }
 
 run {
-    val basePath = Path("base").toAbsolutePath()
+    val basePath = file(".").resolve("base")
     if (!basePath.exists()) {
         Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base", basePath.toString())).waitFor()
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 rootProject.name = "pylon"
