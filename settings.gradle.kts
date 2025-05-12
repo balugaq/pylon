@@ -1,14 +1,14 @@
 run {
-    val corePath = file(".").resolve("core")
-    if (!corePath.exists()) {
-        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core", corePath.toString())).waitFor()
+    val core = file("core")
+    if (!core.exists()) {
+        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core", core.toString())).waitFor()
     }
 }
 
 run {
-    val basePath = file(".").resolve("base")
-    if (!basePath.exists()) {
-        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base", basePath.toString())).waitFor()
+    val base = file("base")
+    if (!base.exists()) {
+        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base", base.toString())).waitFor()
     }
 }
 
