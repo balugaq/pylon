@@ -1,14 +1,22 @@
 run {
     val core = file("core")
     if (!core.exists()) {
-        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core", core.toString())).waitFor()
+        Runtime.getRuntime().exec(
+            arrayOf(
+                "git", "clone", "https://github.com/pylonmc/pylon-core", core.absolutePath
+            )
+        ).waitFor()
     }
 }
 
 run {
     val base = file("base")
     if (!base.exists()) {
-        Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base", base.toString())).waitFor()
+        Runtime.getRuntime().exec(
+            arrayOf(
+                "git", "clone", "https://github.com/pylonmc/pylon-base", base.absolutePath
+            )
+        ).waitFor()
     }
 }
 
