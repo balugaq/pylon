@@ -14,7 +14,6 @@ tasks.runServer {
         runFolder.resolve("eula.txt").writeText("eula=true")
 
         val pluginsDir = runFolder.resolve("plugins")
-        pluginsDir.deleteRecursively()
         pluginsDir.mkdirs()
         copy {
             from(baseBuild.projectDir.resolve("build/libs")) {
