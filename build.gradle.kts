@@ -1,5 +1,5 @@
 plugins {
-    id("xyz.jpenilla.run-paper") version "2.3.0"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
 val baseBuild = gradle.includedBuild("base")
@@ -33,7 +33,7 @@ tasks.runServer {
     }
 
     maxHeapSize = "4G"
-    minecraftVersion("1.21.4")
+    minecraftVersion("1.21.8")
 }
 
 tasks.register("runSnapshotServer") {
