@@ -26,7 +26,7 @@ tasks.runServer {
         }
         copy {
             from(coreBuild.projectDir.resolve("pylon-core/build/libs")) {
-                include("pylon-core-SNAPSHOT.jar")
+                include("pylon-core--SNAPSHOT.jar")
             }
             into(pluginsDir)
         }
