@@ -1,23 +1,9 @@
 run {
-    val core = file("core")
-    if (!core.exists()) {
-        Runtime.getRuntime().exec(
-            arrayOf(
-                "git", "clone", "https://github.com/pylonmc/pylon-core", core.absolutePath
-            )
-        ).waitFor()
-    }
+    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core")).waitFor()
 }
 
 run {
-    val base = file("base")
-    if (!base.exists()) {
-        Runtime.getRuntime().exec(
-            arrayOf(
-                "git", "clone", "https://github.com/pylonmc/pylon-base", base.absolutePath
-            )
-        ).waitFor()
-    }
+    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base")).waitFor()
 }
 
 plugins {
@@ -25,5 +11,5 @@ plugins {
 }
 
 rootProject.name = "pylon"
-includeBuild("core")
-includeBuild("base")
+includeBuild("pylon-core")
+includeBuild("pylon-base")
