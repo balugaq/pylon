@@ -3,7 +3,7 @@ plugins {
 }
 
 val baseBuild = gradle.includedBuild("pylon-base")
-val coreBuild = gradle.includedBuild("pylon-base")
+val coreBuild = gradle.includedBuild("pylon-core")
 
 tasks.runServer {
     dependsOn(baseBuild.task(":shadowJar"), coreBuild.task(":plugin:shadowJar"))
