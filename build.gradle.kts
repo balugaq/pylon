@@ -34,6 +34,7 @@ tasks.runServer {
 
     maxHeapSize = "4G"
     minecraftVersion("1.21.8")
+    jvmArgs("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005")
 }
 
 tasks.register("runSnapshotServer") {

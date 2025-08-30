@@ -1,9 +1,9 @@
 run {
-    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-core")).waitFor()
+    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/balugaq/pylon-core")).waitFor()
 }
 
 run {
-    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/pylonmc/pylon-base")).waitFor()
+    Runtime.getRuntime().exec(arrayOf("git", "clone", "https://github.com/balugaq/pylon-base")).waitFor()
 }
 
 plugins {
