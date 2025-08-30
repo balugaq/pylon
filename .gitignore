@@ -4,3 +4,4 @@ build
 pylon-base
 pylon-core
 run
+local-repo
