@@ -6,7 +6,7 @@ val baseBuild = gradle.includedBuild("pylon-base")
 val coreBuild = gradle.includedBuild("pylon-core")
 
 tasks.runServer {
-    dependsOn(baseBuild.task(":shadowJar"), coreBuild.task(":plugin:shadowJar"))
+    dependsOn(baseBuild.task(":shadowJar"), coreBuild.task(":pylon-core:shadowJar"))
 
     doFirst {
         val runFolder = project.projectDir.resolve("run")
@@ -25,7 +25,7 @@ tasks.runServer {
             into(pluginsDir)
         }
         copy {
-            from(coreBuild.projectDir.resolve("plugin/build/libs")) {
+            from(coreBuild.projectDir.resolve("pylon-core/build/libs")) {
                 include("pylon-core-1.0.0-SNAPSHOT.jar")
             }
             into(pluginsDir)
